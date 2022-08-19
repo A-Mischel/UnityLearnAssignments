@@ -15,21 +15,19 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip crashSound;
     public bool gameOver = false;
-    private bool isGrounded = true;
+    public bool isGrounded;
     private Animator anime;
+    private GameObject canvas;
     void Awake()
     {
+        Ground();
         controls = new PlayerControls();
         rb = this.GetComponent<Rigidbody>(); 
         controls.Player.Jump.started += _ => Jump();
         anime =  GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         Physics.gravity *= gravityModifier;
-    }
-
-    void Update()
-    {
-        
+        canvas = GameObject.Find("Canvas");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -40,30 +38,59 @@ public class PlayerController : MonoBehaviour
             explosionParticle.Play();
             dirtParticle.Stop();
             gameOver = true;
-            anime.SetBool("Death_b", true);
-            anime.SetInteger("DeathType_int", 1);
-            playerAudio.PlayOneShot(crashSound, 1.0f); 
+            anime.SetTrigger("Death");
+
+            playerAudio.PlayOneShot(crashSound, 1.0f);
+            collision.gameObject.GetComponent<BoxCollider>().enabled = false;
+            canvas.SetActive(true);
         }
         
-        if (collision.gameObject.CompareTag("Ground") && !gameOver)
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
-            dirtParticle.Play();
+            Ground();
         }
      
     }
 
+    public void Ground()
+    {
+        if (gameOver == false)
+        {
+            isGrounded = true;
+            dirtParticle.Play();
+        }
+      
+    }
+
     private void Jump()
     {
-        if (isGrounded & !gameOver)
+        if (!gameOver)
         {
-            playerAudio.PlayOneShot(jumpSound, 1.0f); 
-            dirtParticle.Stop();
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false; 
-            anime.SetTrigger("Jump_trig");
+            if (isGrounded)
+            {
+                  
+                isGrounded = false;
+                if (!isGrounded)
+                {
+                    anime.SetTrigger("Jump_trig");
+
+                }
+                playerAudio.PlayOneShot(jumpSound, 1.0f); 
+                dirtParticle.Stop();
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+            
         }
+      
+      
     }
+
+    public void Restart()
+    {
+        gameOver = false;
+        Ground();
+    }
+
 
     private void OnEnable() => controls.Enable();
     private void OnDisable() => controls.Disable();
