@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     {
          //anime.SetBool("Death_b", false);
         playerController.Restart();
-
         anime.SetBool("Revive", true);
         canvas.SetActive(false);
         StartCoroutine(revival());

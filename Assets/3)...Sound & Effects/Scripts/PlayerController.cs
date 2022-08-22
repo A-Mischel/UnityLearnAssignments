@@ -14,10 +14,12 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip jumpSound;
     public AudioClip crashSound;
+    public AudioClip sniff;
     public bool gameOver = false;
     public bool isGrounded;
     private Animator anime;
     private GameObject canvas;
+    public Score score;
     void Awake()
     {
         Ground();
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("collision");
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            score.score = 0;
             explosionParticle.Play();
             dirtParticle.Stop();
             gameOver = true;
@@ -42,12 +45,26 @@ public class PlayerController : MonoBehaviour
 
             playerAudio.PlayOneShot(crashSound, 1.0f);
             collision.gameObject.GetComponent<BoxCollider>().enabled = false;
+            StartCoroutine(EndGameUI());
+        }
+
+        IEnumerator EndGameUI()
+        {
+            yield return new WaitForSeconds(1.2f);
             canvas.SetActive(true);
+
         }
         
         if (collision.gameObject.CompareTag("Ground"))
         {
             Ground();
+        }
+        
+        if (collision.gameObject.CompareTag("Collectable"))
+        {
+            Destroy(collision.gameObject);
+            playerAudio.PlayOneShot(sniff);
+            score.score += 1;
         }
      
     }

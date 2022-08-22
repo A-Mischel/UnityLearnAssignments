@@ -4,7 +4,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SpawnManager : MonoBehaviour
+public class CoinSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] obstaclePrefabs;
@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
     {
         if(playerController.gameOver == false)
         {
-            Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], spawnPos, quaternion.identity, this.transform);
+            Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], new Vector3(spawnPos.x, Random.Range(2, 4), 0), quaternion.identity, this.transform);
         }
 
   
