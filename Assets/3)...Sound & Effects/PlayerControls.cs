@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/PlayerControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/3)...Sound & Effects/PlayerControls.inputactions'
 
 using System;
 using System.Collections;
