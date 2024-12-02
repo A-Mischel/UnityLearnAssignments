@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         anime = GameObject.Find("Player").GetComponent<Animator>();
-        canvas = GameObject.Find("Canvas");
-        canvas.SetActive(false);
+       // canvas = GameObject.Find("Canvas");
+       // canvas.SetActive(false);
     }
 
     // Update is called once per frame

@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
     private Animator anime;
     private GameObject canvas;
     public Score score;
+   
+    
+    
+    
+    
     void Awake()
     {
         Ground();
@@ -29,7 +34,7 @@ public class PlayerController : MonoBehaviour
         anime =  GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         Physics.gravity *= gravityModifier;
-        canvas = GameObject.Find("Canvas");
+       // canvas = GameObject.Find("Canvas");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -51,7 +56,7 @@ public class PlayerController : MonoBehaviour
         IEnumerator EndGameUI()
         {
             yield return new WaitForSeconds(1.2f);
-            canvas.SetActive(true);
+           // canvas.SetActive(true);
 
         }
         
@@ -65,6 +70,7 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             playerAudio.PlayOneShot(sniff);
             score.score += 1;
+            Debug.Log("I remember how to do this?");
         }
      
     }
