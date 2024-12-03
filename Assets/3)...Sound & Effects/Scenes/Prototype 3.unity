@@ -399,6 +399,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9875397ecdffb5e44ba87958dee21e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstaclePrefabs:
+  - {fileID: 395019401216328042, guid: aea9033fb170bae4f8ee6fd1f8c15736, type: 3}
+  startDelay: 0.5
+  repeatRate: 1
+  spawnPos: {x: 12, y: 0, z: 0}
 --- !u!1 &399796797
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +438,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 370.9, y: -79.2}
+  m_AnchoredPosition: {x: 677.9, y: 326.51}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &399796799
@@ -521,7 +526,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 57.002197, y: 0, z: 46.684082, w: 0}
+  m_margin: {x: 0.39575195, y: 0, z: 0.13696289, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -870,9 +875,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 08ab7053d586c458db3774d33c141a4b, type: 3}
   crashSound: {fileID: 8300000, guid: 26e9a5b4309917b42bb0f193155b9331, type: 3}
   sniff: {fileID: 8300000, guid: d7daf91aaa281394284387fc3d5f4bd6, type: 3}
-  gameOver: 0
   isGrounded: 0
-  score: {fileID: 11400000, guid: 05fed189690eadc40a022ca69f6b1444, type: 2}
 --- !u!1 &835818919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,7 +1062,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 373.1, y: 0}
+  m_AnchoredPosition: {x: 677.9, y: 398}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &986397116
