@@ -26,7 +26,7 @@ public class BaggySpawner : MonoBehaviour
     {
         if(gameManager.GameRunning())
         {
-            Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], new Vector3(spawnPos.x, Random.Range(2, 4), 0), quaternion.identity, this.transform);
+            Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], new Vector3(spawnPos.x, Random.Range(2, 8), 0), quaternion.identity, this.transform);
         }
 
   

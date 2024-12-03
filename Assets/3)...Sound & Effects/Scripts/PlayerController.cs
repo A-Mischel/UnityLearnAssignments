@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         _animator.SetBool("Death_b", false);
         _animator.SetBool("Revive", true);
-        Ground();
+        isGrounded = true;
         characterAlive = true;
         StartCoroutine(Revival());
     }

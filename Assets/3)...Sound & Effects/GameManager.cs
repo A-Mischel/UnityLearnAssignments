@@ -41,19 +41,26 @@ public class GameManager : MonoBehaviour
     
     public void IncrementScore()
     {
-        uiManager.UpdateScore(_score);
         _score++;
+        uiManager.UpdateScore(_score);
+      
     }
     
+
     public void Reset()
     {
-        playerController.Restart();
+        uiManager.StartGame();
+        _score = 0;
+        uiManager.UpdateScore(_score);
         playing = true;
+        playerController.Restart();
+       
     }
-    
+
     public void endGame()
     {
         playing = false;
+        uiManager.EndGame();
         Debug.Log("Game Over");
 
     }

@@ -12,7 +12,7 @@ public class repeatbackground : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-        repeatWidth = GetComponent<BoxCollider>().size.x / 2;
+        repeatWidth = 112.8f / 2.0f;  //GetComponent<BoxCollider>().size.x / 2;
     }
 
     // Update is called once per frame
