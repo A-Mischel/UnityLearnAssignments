@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
     
     public void Reset()
     {
+        uiManager.StartGame();
+        _score = 0;
+        uiManager.UpdateScore(_score);
         playerController.Restart();
         playing = true;
     }
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour
     public void endGame()
     {
         playing = false;
+        uiManager.EndGame();
         Debug.Log("Game Over");
 
     }
