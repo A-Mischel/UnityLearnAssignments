@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private PlayerControls controls;
-    private Rigidbody rb;
+    private Rigidbody _rigidBody;
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravityModifier;
     public ParticleSystem explosionParticle;
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip sniff;
     public bool gameOver = false;
     public bool isGrounded;
-    private Animator anime;
+    private Animator _animator;
     private GameObject canvas;
     public Score score;
    
@@ -29,9 +29,9 @@ public class PlayerController : MonoBehaviour
     {
         Ground();
         controls = new PlayerControls();
-        rb = this.GetComponent<Rigidbody>(); 
+        _rigidBody = this.GetComponent<Rigidbody>(); 
         controls.Player.Jump.started += _ => Jump();
-        anime =  GetComponent<Animator>();
+        _animator =  GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         Physics.gravity *= gravityModifier;
        // canvas = GameObject.Find("Canvas");
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
             explosionParticle.Play();
             dirtParticle.Stop();
             gameOver = true;
-            anime.SetTrigger("Death");
+            _animator.SetTrigger("Death");
 
             playerAudio.PlayOneShot(crashSound, 1.0f);
             collision.gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -95,12 +95,12 @@ public class PlayerController : MonoBehaviour
                 isGrounded = false;
                 if (!isGrounded)
                 {
-                    anime.SetTrigger("Jump_trig");
+                    _animator.SetTrigger("Jump_trig");
 
                 }
                 playerAudio.PlayOneShot(jumpSound, 1.0f); 
                 dirtParticle.Stop();
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                _rigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
             
         }

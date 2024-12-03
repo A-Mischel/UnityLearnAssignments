@@ -7,15 +7,30 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private PlayerController playerController;
-    private Animator anime;
-    private GameObject canvas;
+    private Animator _animator;
+
+    private static GameManager _instance;
+
+    
+    public static GameManager Instance { get { return _instance; } }
+    
+    
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        } else {
+            _instance = this;
+        }
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        anime = GameObject.Find("Player").GetComponent<Animator>();
-       // canvas = GameObject.Find("Canvas");
-       // canvas.SetActive(false);
+        _animator = GameObject.Find("Player").GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -27,20 +42,19 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Reset")]
     public void Reset()
     {
-         //anime.SetBool("Death_b", false);
+         //_animator.SetBool("Death_b", false);
         playerController.Restart();
-        anime.SetBool("Revive", true);
-        canvas.SetActive(false);
-        StartCoroutine(revival());
+        _animator.SetBool("Revive", true);
+        StartCoroutine(Revival());
 
 
 
     }
 
-    IEnumerator revival()
+    private IEnumerator Revival()
     {
         yield return new WaitForSeconds(1);
-        anime.SetBool("Revive", false);
+        _animator.SetBool("Revive", false);
 
     }
 }
