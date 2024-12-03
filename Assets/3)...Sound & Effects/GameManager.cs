@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private PlayerController playerController;
-    private Animator _animator;
-    private int _score = 0;
-    
-    private static GameManager _instance; 
+   
     public static GameManager Instance { get { return _instance; } }
+    
+    private bool playing = true;
+    private int _score = 0;
+    private static GameManager _instance; 
     private UIManager uiManager;
+    private PlayerController playerController;
     
     
     private void Awake()
@@ -25,22 +26,16 @@ public class GameManager : MonoBehaviour
         }
     }
     
-
     
-    // Start is called before the first frame update
     void Start()
     {
         uiManager = UIManager.Instance;
-        
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        _animator = GameObject.Find("Player").GetComponent<Animator>();
-
+        playerController = PlayerController.Instance;
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool GameRunning()
     {
-        
+        return playing;
     }
 
     
@@ -49,23 +44,19 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateScore(_score);
         _score++;
     }
-
-    [ContextMenu("Reset")]
+    
     public void Reset()
     {
-         //_animator.SetBool("Death_b", false);
         playerController.Restart();
-        _animator.SetBool("Revive", true);
-        StartCoroutine(Revival());
-
-
-
+        playing = true;
     }
-
-    private IEnumerator Revival()
+    
+    public void endGame()
     {
-        yield return new WaitForSeconds(1);
-        _animator.SetBool("Revive", false);
+        playing = false;
+        Debug.Log("Game Over");
 
     }
+
+
 }

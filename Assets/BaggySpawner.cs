@@ -14,17 +14,17 @@ public class BaggySpawner : MonoBehaviour
     private float repeatRate = 1f;
     [SerializeField]
     private Vector3 spawnPos;    
-    private PlayerController playerController;
+    private GameManager gameManager;
     private float leftBound = -10;
     void Start()
     {
         InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        gameManager = GameManager.Instance;
     }
 
     void SpawnObstacle()
     {
-        if(playerController.gameOver == false)
+        if(gameManager.GameRunning())
         {
             Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], new Vector3(spawnPos.x, Random.Range(2, 4), 0), quaternion.identity, this.transform);
         }
@@ -32,9 +32,5 @@ public class BaggySpawner : MonoBehaviour
   
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

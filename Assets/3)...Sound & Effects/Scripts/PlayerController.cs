@@ -15,76 +15,80 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip crashSound;
     public AudioClip sniff;
-    public bool gameOver = false;
     public bool isGrounded;
     private Animator _animator;
     private GameObject canvas;
-    public Score score;
     private GameManager gameManager;
-   
-    
-    
+    private bool characterAlive = true;
+
+
+    private static PlayerController _instance; 
+    public static PlayerController Instance { get { return _instance; } }
     
     
     private void Awake()
     {
-        Ground();
+        
+        
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        } else {
+            _instance = this;
+        }
+       
         controls = new PlayerControls();
         _rigidBody = this.GetComponent<Rigidbody>(); 
         controls.Player.Jump.started += _ => Jump();
         _animator =  GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         Physics.gravity *= gravityModifier;
-       // canvas = GameObject.Find("Canvas");
     }
 
     private void Start()
     {
+        
        gameManager = GameManager.Instance;
+       Ground();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.tag);
+      
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            score.score = 0;
+            characterAlive = false;
+            gameManager.endGame();
+            animateCharacterDeath();
             explosionParticle.Play();
             dirtParticle.Stop();
-            gameOver = true;
-            _animator.SetTrigger("Death");
-
             playerAudio.PlayOneShot(crashSound, 1.0f);
             collision.gameObject.GetComponent<BoxCollider>().enabled = false;
-            StartCoroutine(EndGameUI());
-        }
-
-        IEnumerator EndGameUI()
-        {
-            yield return new WaitForSeconds(1.2f);
-           // canvas.SetActive(true);
-
         }
         
-        if (collision.gameObject.CompareTag("Ground"))
+        else if (collision.gameObject.CompareTag("Ground"))
         {
             Ground();
         }
         
-        if (collision.gameObject.CompareTag("Collectable"))
+        else if (collision.gameObject.CompareTag("Collectable"))
         {
             Destroy(collision.gameObject);
             playerAudio.PlayOneShot(sniff);
-            //score.score += 1;
             gameManager.IncrementScore();
-            Debug.Log("I remember how to do this?");
         }
      
     }
 
-    public void Ground()
+    
+    private void animateCharacterDeath()
     {
-        if (gameOver == false)
+        _animator.SetTrigger("Death");
+
+    }
+    private void Ground()
+    {
+        if (gameManager.GameRunning())
         {
             isGrounded = true;
             dirtParticle.Play();
@@ -94,21 +98,13 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (!gameOver)
+        if (characterAlive && isGrounded)
         {
-            if (isGrounded)
-            {
-                  
                 isGrounded = false;
-                if (!isGrounded)
-                {
-                    _animator.SetTrigger("Jump_trig");
-
-                }
+                _animator.SetTrigger("Jump_trig");
                 playerAudio.PlayOneShot(jumpSound, 1.0f); 
                 dirtParticle.Stop();
                 _rigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
             
         }
       
@@ -117,8 +113,19 @@ public class PlayerController : MonoBehaviour
 
     public void Restart()
     {
-        gameOver = false;
+        _animator.SetBool("Death_b", false);
+        _animator.SetBool("Revive", true);
         Ground();
+        characterAlive = true;
+        StartCoroutine(Revival());
+    }
+    
+    
+    private IEnumerator Revival()
+    {
+        yield return new WaitForSeconds(1);
+        _animator.SetBool("Revive", false);
+
     }
 
 

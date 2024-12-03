@@ -14,17 +14,17 @@ public class SpawnManager : MonoBehaviour
     private float repeatRate = 1f;
     [SerializeField]
     private Vector3 spawnPos;    
-    private PlayerController playerController;
     private float leftBound = -10;
+    private GameManager gameManager;
     void Start()
     {
+        gameManager = GameManager.Instance;
         InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     void SpawnObstacle()
     {
-        if(playerController.gameOver == false)
+        if(gameManager.GameRunning() == true)
         {
             Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], spawnPos, quaternion.identity, this.transform);
         }
@@ -32,9 +32,5 @@ public class SpawnManager : MonoBehaviour
   
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
