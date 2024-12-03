@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
 {
     private PlayerController playerController;
     private Animator _animator;
-
-    private static GameManager _instance;
-
+    private int _score = 0;
     
+    private static GameManager _instance; 
     public static GameManager Instance { get { return _instance; } }
+    private UIManager uiManager;
     
     
     private void Awake()
@@ -25,9 +25,17 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    public void IncrementScore()
+    {
+        _score++;
+    }
+    
+    
     // Start is called before the first frame update
     void Start()
     {
+        uiManager = UIManager.Instance;
+        
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         _animator = GameObject.Find("Player").GetComponent<Animator>();
 
