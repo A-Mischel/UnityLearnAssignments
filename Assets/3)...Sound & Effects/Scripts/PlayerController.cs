@@ -20,12 +20,13 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private GameObject canvas;
     public Score score;
+    private GameManager gameManager;
    
     
     
     
     
-    void Awake()
+    private void Awake()
     {
         Ground();
         controls = new PlayerControls();
@@ -37,9 +38,14 @@ public class PlayerController : MonoBehaviour
        // canvas = GameObject.Find("Canvas");
     }
 
+    private void Start()
+    {
+       gameManager = GameManager.Instance;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collision");
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             score.score = 0;
@@ -69,7 +75,8 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             playerAudio.PlayOneShot(sniff);
-            score.score += 1;
+            //score.score += 1;
+            gameManager.IncrementScore();
             Debug.Log("I remember how to do this?");
         }
      

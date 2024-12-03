@@ -25,11 +25,7 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    public void IncrementScore()
-    {
-        _score++;
-    }
-    
+
     
     // Start is called before the first frame update
     void Start()
@@ -45,6 +41,13 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    
+    public void IncrementScore()
+    {
+        uiManager.UpdateScore(_score);
+        _score++;
     }
 
     [ContextMenu("Reset")]

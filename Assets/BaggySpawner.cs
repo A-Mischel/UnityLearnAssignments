@@ -4,7 +4,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CoinSpawner : MonoBehaviour
+public class BaggySpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] obstaclePrefabs;

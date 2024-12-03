@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateScore(int score)
     {
-        scoreText.text = "Score: " + score;
+        scoreText.text = score.ToString();
     }
     
     // Start is called before the first frame update
