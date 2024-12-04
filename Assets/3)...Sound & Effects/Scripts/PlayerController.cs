@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravityModifier;
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
+    public ParticleSystem powderParticle;
     private AudioSource playerAudio;
     public AudioClip jumpSound;
     public AudioClip crashSound;
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour
       
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            
             characterAlive = false;
             gameManager.endGame();
             animateCharacterDeath();
@@ -75,6 +77,9 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             playerAudio.PlayOneShot(sniff);
+            powderParticle.transform.localPosition = transform.InverseTransformPoint(collision.contacts[0].point);
+            powderParticle.Play();
+            
             gameManager.IncrementScore();
         }
      

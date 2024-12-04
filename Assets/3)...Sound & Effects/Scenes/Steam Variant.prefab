@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5309406336589993855
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4221402037530588, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221402037530588, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.3460283
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221402037530588, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221402037530588, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221402037530588, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710784
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221402037530588, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221402037530588, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221402037530588, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: lengthInSec
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: UVModule.flipU
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: UVModule.flipV
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: SizeModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: RotationModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198603562046773920, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199185188785216948, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_Flip.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 199185188785216948, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_Flip.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 199185188785216948, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
