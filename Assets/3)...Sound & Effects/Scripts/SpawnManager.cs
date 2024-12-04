@@ -24,7 +24,7 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnObstacle()
     {
-        if(gameManager.GameRunning() == true)
+        if(gameManager.GameRunning())
         {
             Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], spawnPos, quaternion.identity, this.transform);
         }

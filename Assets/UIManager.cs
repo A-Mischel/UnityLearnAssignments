@@ -11,8 +11,9 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get { return _instance; } }
     public GameObject startButton;
     public TextMeshProUGUI scoreText;
-    
-    
+    public GameObject pauseButton;
+    private AudioManager audioManager;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -31,6 +32,7 @@ public class UIManager : MonoBehaviour
     
     public void StartGame()
     {
+        audioManager = AudioManager.Instance;
         startButton.gameObject.SetActive(false);
     }
 
@@ -39,6 +41,23 @@ public class UIManager : MonoBehaviour
         startButton.gameObject.SetActive(true);
        
        
+    }
+    
+    public void toggleMute()
+    {
+        AudioManager.Instance.toggleMute();
+    }
+
+
+    public void Pause()
+    {
+        pauseButton.gameObject.SetActive(true);
+        
+    }
+    
+    public void play()
+    {
+        pauseButton.gameObject.SetActive(false);
     }
     
 }

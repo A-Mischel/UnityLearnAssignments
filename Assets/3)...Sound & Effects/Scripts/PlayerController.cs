@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private GameObject canvas;
     private GameManager gameManager;
     private bool characterAlive = true;
+    private UIManager uiManager;
 
 
     private static PlayerController _instance; 
@@ -41,14 +42,16 @@ public class PlayerController : MonoBehaviour
         controls = new PlayerControls();
         _rigidBody = this.GetComponent<Rigidbody>(); 
         controls.Player.Jump.started += _ => Jump();
+        controls.Player.Cancel.started += _ => gameManager.togglePause();
         _animator =  GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         Physics.gravity *= gravityModifier;
     }
 
     private void Start()
-    {
-        
+    { 
+        uiManager = UIManager.Instance;
+        controls.Player.Mute.started += _ => uiManager.toggleMute();
        gameManager = GameManager.Instance;
        Ground();
     }
@@ -93,11 +96,11 @@ public class PlayerController : MonoBehaviour
     }
     private void Ground()
     {
-        if (gameManager.GameRunning())
-        {
+        // if (gameManager.GameRunning())
+        // {
             isGrounded = true;
             dirtParticle.Play();
-        }
+        // }
       
     }
 
@@ -114,6 +117,11 @@ public class PlayerController : MonoBehaviour
         }
       
       
+    }
+
+    public void startGame()
+    {
+        _animator.SetFloat("Speed_f", 1.0f);
     }
 
     public void Restart()

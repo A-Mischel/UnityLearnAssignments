@@ -9,7 +9,11 @@ public class GameManager : MonoBehaviour
    
     public static GameManager Instance { get { return _instance; } }
     
-    private bool playing = true;
+    private bool playing = false;
+    private bool gamePaused = false;
+
+    
+    
     private int _score = 0;
     private static GameManager _instance; 
     private UIManager uiManager;
@@ -56,7 +60,45 @@ public class GameManager : MonoBehaviour
         playerController.Restart();
        
     }
-
+    
+    
+    
+    // public void PauseGame()
+    // {
+    //     if (playing)
+    //     {
+    //         playing = false;
+    //         gamePaused = true;
+    //     }
+    //     //uiManager.EndGame();
+    // }
+    //
+    // public void ResumeGame()
+    // {
+    //     if (gamePaused)
+    //     {
+    //         gamePaused = false; 
+    //         playing = true;
+    //     }
+    // }
+    
+    public void togglePause()
+    {
+        if (gamePaused && !playing)
+        {
+            gamePaused = false;
+            playing = true;
+            uiManager.play();
+            
+        } else if (playing && !gamePaused)
+        {
+            playing = false;
+            gamePaused = true;
+            uiManager.Pause();
+        }
+    }
+    
+    
     public void endGame()
     {
         playing = false;

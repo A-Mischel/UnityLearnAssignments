@@ -9,4 +9,4 @@ EditorBuildSettings:
     path: Assets/3)...Sound & Effects/Scenes/Prototype 3.unity
     guid: dc8c9f3efd746429fa6f9482dc779492
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 264e387d8d3615c4bb7ab48533c2e11d, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 517e39aa294227846a153742802ad0cc, type: 2}
