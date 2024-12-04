@@ -12,11 +12,14 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
     public ParticleSystem powderParticle;
+   
     private AudioSource playerAudio;
     public AudioClip jumpSound;
     public AudioClip crashSound;
     public AudioClip sniff;
+    
     public bool isGrounded;
+    
     private Animator _animator;
     private GameObject canvas;
     private GameManager gameManager;
@@ -66,7 +69,7 @@ public class PlayerController : MonoBehaviour
             gameManager.endGame();
             animateCharacterDeath();
             explosionParticle.Play();
-            dirtParticle.Stop();
+          
             playerAudio.PlayOneShot(crashSound, 1.0f);
             collision.gameObject.GetComponent<BoxCollider>().enabled = false;
         }
@@ -91,16 +94,17 @@ public class PlayerController : MonoBehaviour
     
     private void animateCharacterDeath()
     {
+        dirtParticle.Stop();
         _animator.SetTrigger("Death");
 
     }
     private void Ground()
     {
-        // if (gameManager.GameRunning())
-        // {
+        if (characterAlive)
+        {
             isGrounded = true;
             dirtParticle.Play();
-        // }
+        }
       
     }
 
@@ -126,6 +130,8 @@ public class PlayerController : MonoBehaviour
 
     public void Restart()
     {
+       dirtParticle.Play();
+
         _animator.SetBool("Death_b", false);
         _animator.SetBool("Revive", true);
         isGrounded = true;
@@ -140,6 +146,11 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("Revive", false);
 
     }
+
+    // public function handlePause()
+    // {
+    //     
+    // }
 
 
     private void OnEnable() => controls.Enable();
