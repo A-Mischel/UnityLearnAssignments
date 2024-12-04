@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     {
         uiManager.StartGame();
         _score = 0;
-        uiManager.UpdateScore(_score);
+        //uiManager.UpdateScore(_score);
         playing = true;
         playerController.Restart();
        
