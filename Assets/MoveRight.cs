@@ -4,9 +4,21 @@ using UnityEngine;
 
 public class MoveRight : MonoBehaviour
 {
-    private float speed = 25;
+    public float speed = 5;
     private GameManager gameManager;
     private float leftBound = -15f;
+    private static MoveRight _instance;
+    public static MoveRight Instance { get { return _instance; } }
+    
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        } else {
+            _instance = this;
+        }
+    }
     void Start()
     {
         gameManager = GameManager.Instance;

@@ -16,10 +16,31 @@ public class BaggySpawner : MonoBehaviour
     private Vector3 spawnPos;    
     private GameManager gameManager;
     private float leftBound = -10;
+    private static BaggySpawner _instance;
+    public static BaggySpawner Instance { get { return _instance; } }
+    
+    void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+    
+    
     void Start()
     {
-        InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
+       
         gameManager = GameManager.Instance;
+    }
+
+    public void StartSpawningBags()
+    {
+        InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
     }
 
     void SpawnObstacle()

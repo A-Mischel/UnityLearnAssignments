@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,13 +12,17 @@ public class GameManager : MonoBehaviour
     
     private bool playing = false;
     private bool gamePaused = false;
-
+    private bool playerHasJumped = false;
+    private bool isFirstRun = true;
     
     
     private int _score = 0;
     private static GameManager _instance; 
     private UIManager uiManager;
+    private SpawnManager obstacleSpawnManager;
     private PlayerController playerController;
+    private BaggySpawner baggySpawner;
+    private MoveRight backgroundMovingScript;
     
     
     private void Awake()
@@ -35,6 +40,9 @@ public class GameManager : MonoBehaviour
     {
         uiManager = UIManager.Instance;
         playerController = PlayerController.Instance;
+        obstacleSpawnManager = SpawnManager.Instance;
+        baggySpawner = BaggySpawner.Instance;
+        backgroundMovingScript = MoveRight.Instance;
     }
 
     public bool GameRunning()
@@ -53,6 +61,12 @@ public class GameManager : MonoBehaviour
 
     public void Reset()
     {
+        if (isFirstRun)
+        {
+            uiManager.showInstructions();
+            isFirstRun = false;
+            playerController.startWalking();
+        }
         uiManager.StartGame();
         _score = 0;
         //uiManager.UpdateScore(_score);
@@ -60,7 +74,17 @@ public class GameManager : MonoBehaviour
         playerController.Restart();
        
     }
-    
+
+    public void onFirstInput()
+    {
+        Debug.Log("First Input");
+        DOTween.To(() => backgroundMovingScript.speed, x => backgroundMovingScript.speed = x, 25f, 1.5f)
+            .SetEase(Ease.InOutQuad);
+
+        obstacleSpawnManager.StartSpawningObstacles();
+        baggySpawner.StartSpawningBags();
+        uiManager.removeInstructions();
+    }
     
     
     // public void PauseGame()

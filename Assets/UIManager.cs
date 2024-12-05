@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +14,10 @@ public class UIManager : MonoBehaviour
     public GameObject startButton;
     public TextMeshProUGUI scoreText;
     public GameObject pauseButton;
+    public TextMeshProUGUI finalScore;
     private AudioManager audioManager;
     public Material textMeshShader;
+    public GameObject instructions;
 
     private void Awake()
     {
@@ -47,7 +50,7 @@ public class UIManager : MonoBehaviour
     
     public void StartGame()
     {
-        
+        finalScore.gameObject.SetActive(false);
         scoreText.text = "0";
         audioManager = AudioManager.Instance;
         startButton.gameObject.SetActive(false);
@@ -55,9 +58,36 @@ public class UIManager : MonoBehaviour
 
     public void EndGame()
     {
+        if (Int32.Parse(scoreText.text) == 0)
+        {
+            finalScore.text = "Gran-Gran scored zero delicious nose clams :(";
+
+        }else if (Int32.Parse(scoreText.text) == 1)
+        {
+            finalScore.text = "Gran-Gran scored one baggy of that sweet sweet sugar!";
+
+        }
+        else if(Int32.Parse(scoreText.text) > 1)
+        {
+            finalScore.text = "Gran-Gran scored " + scoreText.text + " Grams!";
+
+        }
+  
+        
+        finalScore.gameObject.SetActive(true);
         startButton.gameObject.SetActive(true);
        
        
+    }
+
+    public void removeInstructions()
+    {
+        Destroy(instructions);   
+    }
+    
+    public void showInstructions()
+    {
+        instructions.SetActive(true);
     }
     
     public void toggleMute()

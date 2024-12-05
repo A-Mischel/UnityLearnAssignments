@@ -16,10 +16,30 @@ public class SpawnManager : MonoBehaviour
     private Vector3 spawnPos;    
     private float leftBound = -10;
     private GameManager gameManager;
-    void Start()
+    private static SpawnManager _instance;
+    public static SpawnManager Instance { get { return _instance; } }
+    
+    void Start() {
+    if (_instance != null && _instance != this)
     {
-        gameManager = GameManager.Instance;
+        Destroy(this.gameObject);
+    }
+    else
+    {
+        _instance = this;
+    }
+
+    gameManager = GameManager.Instance;
+    }
+
+    public void StartSpawningObstacles()
+    {
         InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
+    }
+    
+    public void StopSpawningObstacles()
+    {
+        CancelInvoke("SpawnObstacle");
     }
 
     void SpawnObstacle()

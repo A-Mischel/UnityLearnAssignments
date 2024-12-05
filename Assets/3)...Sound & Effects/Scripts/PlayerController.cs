@@ -41,14 +41,29 @@ public class PlayerController : MonoBehaviour
         } else {
             _instance = this;
         }
-       
+        
         controls = new PlayerControls();
         _rigidBody = this.GetComponent<Rigidbody>(); 
+        controls.Player.Jump.started += OnJumpStarted;
         controls.Player.Jump.started += _ => Jump();
         controls.Player.Cancel.started += _ => gameManager.togglePause();
         _animator =  GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         Physics.gravity *= gravityModifier;
+    }
+
+    private void OnJumpStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        _animator.SetFloat("Speed_f", 1.0f);
+        gameManager.onFirstInput();
+        controls.Player.Jump.started -= OnJumpStarted; // Unsubscribe after the first input
+        dirtParticle.gameObject.SetActive(true);
+    }
+
+    public void startWalking()
+    {
+        _animator.SetFloat("Speed_f", 0.4f);
+
     }
 
     private void Start()

@@ -90,17 +90,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eafc7627-ebed-4474-9f75-dde523c3333b"",
-                    ""path"": ""<Mouse>/press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""15515819-4412-4e78-9466-dc179bb224a8"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
