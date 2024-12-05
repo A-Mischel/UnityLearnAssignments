@@ -1,4 +1,16 @@
-# UnityLearnAssignments
-WebGL Builds from course assignments <br />
-Assignment 1. [Counting Prototype](https://vrslurpin.itch.io/chapter-2-unity-learn) <br />
-Assignment 2. [Side Scroller](https://vrslurpin.itch.io/grangrams)<br />
+Assignment 1. [Counting Prototype]() <br />
+Assignment 2. [Side Scroller]()<br />
+#  UnityLearnAssignments from Unity Essentials Course Projects  
+
+Welcome to my **Unity Essentials Course Projects**, created in 2022 while I was learning Unity. These projects follow the Unity Learn Essentials course, featuring fun and interactive demos that helped me grasp the fundamentals of game development.  
+
+## About  
+This repository includes four assignments completed as part of the course. Each project showcases different Unity skills, from scene creation and lighting to scripting and basic game mechanics.  
+
+### Assignments  
+Explore the demos hosted on **Itch.io**:  
+1. [Assignment 1: Scene Design, Lighting, Simple Player Controller](https://vrslurpin.itch.io/chapter-1-unity-learn)  
+2. [Assignment 2: Basic Scripting + Observer Pattern](https://vrslurpin.itch.io/chapter-2-unity-learn)
+3. [Assignment 3: Side Scrolling Game](https://vrslurpin.itch.io/gran-grams)
+
+Enjoy playing around with the demos! 😊  
