@@ -6,7 +6,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"C:/xampp/htdocs/projects/UnityLearnAssignments/build;C:/Users/MS-06S/UnityLearnAssignments/Builds/Count/Build/GranGrams2;C:/Users/MS-06S/UnityLearnAssignments/Builds/Count/Build/GrannyGrams;C:/Users/MS-06S/UnityLearnAssignments/Builds/Count/Build/Count2;C:/Users/MS-06S/ModTheCube/Builds/Count;C:/Users/MS-06S/ModTheCube/Builds;;;;\"}"
+                "value": "{\"m_Value\":\"C:/xampp/htdocs/projects/UnityLearnAssignments/build.1.0;C:/xampp/htdocs/projects/UnityLearnAssignments/build;C:/Users/MS-06S/UnityLearnAssignments/Builds/Count/Build/GranGrams2;C:/Users/MS-06S/UnityLearnAssignments/Builds/Count/Build/GrannyGrams;C:/Users/MS-06S/UnityLearnAssignments/Builds/Count/Build/Count2;C:/Users/MS-06S/ModTheCube/Builds/Count;C:/Users/MS-06S/ModTheCube/Builds;;;\"}"
             },
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",

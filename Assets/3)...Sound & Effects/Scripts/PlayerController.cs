@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip sniff;
     
     public bool isGrounded;
-    
+    public bool hasSecondJump = true;
     private Animator _animator;
     private GameObject canvas;
     private GameManager gameManager;
@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour
         if (characterAlive)
         {
             isGrounded = true;
+            hasSecondJump = true;
             dirtParticle.Play();
         }
       
@@ -134,7 +135,14 @@ public class PlayerController : MonoBehaviour
                 dirtParticle.Stop();
                 _rigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             
-        }
+         }
+        // else if(characterAlive && hasSecondJump)
+        // {
+        //     hasSecondJump = false;
+        //     //_animator.SetTrigger("Jump_trig");
+        //     playerAudio.PlayOneShot(jumpSound, 1.0f); 
+        //     _rigidBody.AddForce(Vector3.up * (jumpForce/2), ForceMode.Impulse);
+        // }
       
       
     }
