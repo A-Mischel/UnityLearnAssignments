@@ -78,8 +78,8 @@ public class GameManager : MonoBehaviour
     public void onFirstInput()
     {
         Debug.Log("First Input");
-        DOTween.To(() => backgroundMovingScript.speed, x => backgroundMovingScript.speed = x, 25f, 1.5f)
-            .SetEase(Ease.InOutQuad);
+        DOTween.To(() => backgroundMovingScript.speed, x => backgroundMovingScript.speed = x, 20f, 1.0f).SetDelay(1.0f);
+        ;
 
         obstacleSpawnManager.StartSpawningObstacles();
         baggySpawner.StartSpawningBags();

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -54,15 +55,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnJumpStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        _animator.SetFloat("Speed_f", 1.0f);
         gameManager.onFirstInput();
         controls.Player.Jump.started -= OnJumpStarted; // Unsubscribe after the first input
         dirtParticle.gameObject.SetActive(true);
+        DOTween.To(() => _animator.GetFloat("Speed_f"), x => _animator.SetFloat("Speed_f", x), 1.0f, 1.0f).SetDelay(1f);
     }
 
     public void startWalking()
     {
-        _animator.SetFloat("Speed_f", 0.4f);
+        _animator.SetFloat("Speed_f", 0.6f);
 
     }
 
