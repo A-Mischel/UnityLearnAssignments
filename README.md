@@ -1,4 +1,4 @@
-#  UnityLearnAssignments from Unity Essentials Course Projects  
+#  UnityLearnAssignments from Unity Essentials 2022
 
 Welcome to my **Unity Essentials Course Projects**, created in 2022 while I was learning Unity. These projects follow the Unity Learn Essentials course, featuring fun and interactive demos that helped me grasp the fundamentals of game development.  
 
