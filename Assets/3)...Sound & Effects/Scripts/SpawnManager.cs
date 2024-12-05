@@ -11,12 +11,17 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private float startDelay = 0.5f;
     [SerializeField]
-    private float repeatRate = 1f;
+    private float repeatRateMax;
+    [SerializeField]
+    private float repeatRateMin;
+    
     [SerializeField]
     private Vector3 spawnPos;    
     private float leftBound = -10;
     private GameManager gameManager;
     private static SpawnManager _instance;
+    public List<GameObject> obstacles = new List<GameObject>();
+    private Coroutine spawnObstaclesCoroutine;
     public static SpawnManager Instance { get { return _instance; } }
     
     void Start() {
@@ -32,24 +37,55 @@ public class SpawnManager : MonoBehaviour
     gameManager = GameManager.Instance;
     }
 
-    public void StartSpawningObstacles()
-    {
-        InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
-    }
-    
+
     public void StopSpawningObstacles()
     {
-        CancelInvoke("SpawnObstacle");
+        if (spawnObstaclesCoroutine != null)
+        {
+            StopCoroutine(spawnObstaclesCoroutine);
+            spawnObstaclesCoroutine = null;
+        }
     }
 
     void SpawnObstacle()
     {
         if(gameManager.GameRunning())
         {
-            Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], spawnPos, quaternion.identity, this.transform);
+            GameObject newObstacle = Instantiate(
+                obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)],
+                spawnPos,
+                Quaternion.identity,
+                this.transform);
+            obstacles.Add(newObstacle);
         }
 
   
+    }
+    
+    [ContextMenu("destroy obstacles")]
+    public void RemoveObstacles()
+    {
+        foreach (GameObject obstacle in obstacles)
+        {
+            Destroy(obstacle);
+        }
+        obstacles.Clear();
+    }
+    
+    public void StartSpawningObstacles()
+    {
+        spawnObstaclesCoroutine = StartCoroutine(SpawnObstaclesWithRandomDelay());
+    }
+    
+    private IEnumerator SpawnObstaclesWithRandomDelay()
+    {
+        
+        yield return new WaitForSeconds(startDelay);
+        while (gameManager.GameRunning())
+        {
+            SpawnObstacle();
+            yield return new WaitForSeconds(Random.Range(repeatRateMin, repeatRateMax)); // Adjust the range as needed
+        }
     }
 
 
